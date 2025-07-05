@@ -1,0 +1,7 @@
+{
+  "name": "frontend-eis-mit-stil",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
