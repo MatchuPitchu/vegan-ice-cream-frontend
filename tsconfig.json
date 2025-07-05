@@ -1,21 +1,31 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "allowJs": false,
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+
+    "esModuleInterop": true,
     "skipLibCheck": true,
-    "esModuleInterop": false,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
+    "allowJs": false,
     "resolveJsonModule": true,
+    "moduleDetection": "force",
     "isolatedModules": true,
+
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "verbatimModuleSyntax": true,
+
+    "moduleResolution": "Bundler",
+    "module": "Preserve",
     "noEmit": true,
-    "jsx": "react-jsx"
+
+    "jsx": "preserve", // JSX output is not transformed, perfect if TS does not compile the code; vite rollup does the build
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
-  "include": ["src"],
+  "include": ["src/**/*", "*.{ts,js}", "eslint.config.js"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
