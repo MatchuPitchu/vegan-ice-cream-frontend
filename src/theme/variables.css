@@ -1,2 +1,357 @@
 /* For information on how to create your own theme, please see:
 http://ionicframework.com/docs/theming/ */
+
+/* lato-300 - latin-ext_latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 300;
+  src: local(''), url('../fonts/lato-v17-latin-ext_latin-300.woff2') format('woff2'),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/lato-v17-latin-ext_latin-300.woff')
+      format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* lato-300italic - latin-ext_latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 300;
+  src: local(''), url('../fonts/lato-v17-latin-ext_latin-300italic.woff2') format('woff2'),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/lato-v17-latin-ext_latin-300italic.woff')
+      format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* lato-regular - latin-ext_latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local(''), url('../fonts/lato-v17-latin-ext_latin-regular.woff2') format('woff2'),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/lato-v17-latin-ext_latin-regular.woff')
+      format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* lato-italic - latin-ext_latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 400;
+  src: local(''), url('../fonts/lato-v17-latin-ext_latin-italic.woff2') format('woff2'),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/lato-v17-latin-ext_latin-italic.woff')
+      format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* lato-700 - latin-ext_latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  src: local(''), url('../fonts/lato-v17-latin-ext_latin-700.woff2') format('woff2'),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/lato-v17-latin-ext_latin-700.woff')
+      format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* lato-700italic - latin-ext_latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 700;
+  src: local(''), url('../fonts/lato-v17-latin-ext_latin-700italic.woff2') format('woff2'),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/lato-v17-latin-ext_latin-700italic.woff')
+      format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* lato-900 - latin-ext_latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 900;
+  src: local(''), url('../fonts/lato-v17-latin-ext_latin-900.woff2') format('woff2'),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/lato-v17-latin-ext_latin-900.woff')
+      format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* lato-900italic - latin-ext_latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 900;
+  src: local(''), url('../fonts/lato-v17-latin-ext_latin-900italic.woff2') format('woff2'),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/lato-v17-latin-ext_latin-900italic.woff')
+      format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* Ionic Variables and Theming. For more info, please see:
+http://ionicframework.com/docs/theming/ */
+
+/** Ionic CSS Variables **/
+:root {
+  --ion-color-primary: #e1a61a;
+  --ion-color-primary-rgb: 225, 166, 26;
+  --ion-color-primary-contrast: #000000;
+  --ion-color-primary-contrast-rgb: 0, 0, 0;
+  --ion-color-primary-shade: #c69217;
+  --ion-color-primary-tint: #e4af31;
+  --ion-color-primary-transparent: #e1a61a80;
+
+  --ion-color-secondary: #fce3ab;
+  --ion-color-secondary-rgb: 252, 227, 171;
+  --ion-color-secondary-contrast: #000000;
+  --ion-color-secondary-contrast-rgb: 0, 0, 0;
+  --ion-color-secondary-shade: #dec896;
+  --ion-color-secondary-tint: #fce6b3;
+
+  --ion-color-tertiary: #f8c143;
+  --ion-color-tertiary-rgb: 248, 193, 67;
+  --ion-color-tertiary-contrast: #000000;
+  --ion-color-tertiary-contrast-rgb: 0, 0, 0;
+  --ion-color-tertiary-shade: #daaa3b;
+  --ion-color-tertiary-tint: #f9c756;
+
+  --ion-color-success: #649225;
+  --ion-color-success-rgb: 100, 146, 37;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+  --ion-color-success-shade: #588021;
+  --ion-color-success-tint: #749d3b;
+
+  --ion-color-warning: #de9c01;
+  --ion-color-warning-rgb: 222, 156, 1;
+  --ion-color-warning-contrast: #000000;
+  --ion-color-warning-contrast-rgb: 0, 0, 0;
+  --ion-color-warning-shade: #c38901;
+  --ion-color-warning-tint: #e1a61a;
+
+  --ion-color-danger: #b53134;
+  --ion-color-danger-rgb: 181, 49, 52;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #9f2b2e;
+  --ion-color-danger-tint: #bc4648;
+
+  --ion-color-dark: #3b3b3b;
+  --ion-color-dark-rgb: 59, 59, 59;
+  --ion-color-dark-contrast: #ffffff;
+  --ion-color-dark-contrast-rgb: 255, 255, 255;
+  --ion-color-dark-shade: #343434;
+  --ion-color-dark-tint: #4f4f4f;
+
+  --ion-color-medium: #909090;
+  --ion-color-medium-rgb: 144, 144, 144;
+  --ion-color-medium-contrast: #000000;
+  --ion-color-medium-contrast-rgb: 0, 0, 0;
+  --ion-color-medium-shade: #7f7f7f;
+  --ion-color-medium-tint: #9b9b9b;
+
+  --ion-color-light: #c4c4c4;
+  --ion-color-light-rgb: 196, 196, 196;
+  --ion-color-light-contrast: #000000;
+  --ion-color-light-contrast-rgb: 0, 0, 0;
+  --ion-color-light-shade: #acacac;
+  --ion-color-light-tint: #cacaca;
+
+  --ion-background-color: #fce6b3;
+  --ion-background-color-rgb: 255, 255, 255;
+  --ion-background-color-with-opacity: #ffffff99;
+  --ion-background-color-with-opacity-dark: #23303399;
+  --ion-background-color-overlay-dark: #233033;
+
+  --ion-text-color: #4a4a4a;
+  --ion-text-color-rgb: 35, 48, 51;
+  --ion-text-color--button: #4a4a4a;
+
+  --ion-border-color: #f9ce64;
+
+  --ion-text-over-background: #4a4a4a;
+  --ion-text-over-home-overlay: #fdf7e7;
+  --ion-toggle-background: #7f7f7f;
+  --ion-item-background: #fdf7e7;
+  --ion-card-background: #fff4db;
+  --ion-card-header-background: #f9c756;
+  --ion-toolbar-background: #fce6b3;
+  --ion-tab-bar-color: var(--ion-color-medium-tint);
+  --ion-tab-bar-color-selected: var(--ion-color-dark);
+  --ion-tab-bar-background: var(--ion-background-color);
+
+  /* font family */
+  --ion-font-family: 'Lato', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
+
+  --ion-border-radius: 4px;
+  --ion-border-radius-circle: 100%;
+  --ion-box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+/* Dark Mode Colors */
+body[color-theme='dark'] {
+  --ion-color-primary: #f9ce64;
+  --ion-color-primary-rgb: 249, 206, 100;
+  --ion-color-primary-contrast: #000000;
+  --ion-color-primary-contrast-rgb: 0, 0, 0;
+  --ion-color-primary-shade: #dbb558;
+  --ion-color-primary-tint: #fad374;
+  --ion-color-primary-transparent: #f9ce6460;
+
+  --ion-color-secondary: #fce3ab;
+  --ion-color-secondary-rgb: 252, 227, 171;
+  --ion-color-secondary-contrast: #000000;
+  --ion-color-secondary-contrast-rgb: 0, 0, 0;
+  --ion-color-secondary-shade: #dec896;
+  --ion-color-secondary-tint: #fce6b3;
+
+  --ion-color-tertiary: #f8c143;
+  --ion-color-tertiary-rgb: 248, 193, 67;
+  --ion-color-tertiary-contrast: #000000;
+  --ion-color-tertiary-contrast-rgb: 0, 0, 0;
+  --ion-color-tertiary-shade: #daaa3b;
+  --ion-color-tertiary-tint: #f9c756;
+
+  --ion-color-success: #649225;
+  --ion-color-success-rgb: 100, 146, 37;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+  --ion-color-success-shade: #588021;
+  --ion-color-success-tint: #749d3b;
+
+  --ion-color-warning: #de9c01;
+  --ion-color-warning-rgb: 222, 156, 1;
+  --ion-color-warning-contrast: #000000;
+  --ion-color-warning-contrast-rgb: 0, 0, 0;
+  --ion-color-warning-shade: #c38901;
+  --ion-color-warning-tint: #e1a61a;
+
+  --ion-color-danger: #b53134;
+  --ion-color-danger-rgb: 181, 49, 52;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #9f2b2e;
+  --ion-color-danger-tint: #bc4648;
+
+  --ion-color-dark: #4a4a4a;
+  --ion-color-dark-rgb: 74, 74, 74;
+  --ion-color-dark-contrast: #ffffff;
+  --ion-color-dark-contrast-rgb: 255, 255, 255;
+  --ion-color-dark-shade: #414141;
+  --ion-color-dark-tint: #5c5c5c;
+
+  --ion-color-medium: #909090;
+  --ion-color-medium-rgb: 144, 144, 144;
+  --ion-color-medium-contrast: #000000;
+  --ion-color-medium-contrast-rgb: 0, 0, 0;
+  --ion-color-medium-shade: #7f7f7f;
+  --ion-color-medium-tint: #9b9b9b;
+
+  --ion-color-light: #c4c4c4;
+  --ion-color-light-rgb: 196, 196, 196;
+  --ion-color-light-contrast: #000000;
+  --ion-color-light-contrast-rgb: 0, 0, 0;
+  --ion-color-light-shade: #acacac;
+  --ion-color-light-tint: #cacaca;
+
+  --ion-background-color: #233033;
+  --ion-background-color-rgb: 35, 48, 51;
+  --ion-background-color-with-opacity: #23303399;
+  --ion-background-color-with-opacity-dark: #23303375;
+  --ion-background-color-overlay-dark: #233033;
+
+  --ion-text-color: #ffffff;
+  --ion-text-color-rgb: 255, 255, 255;
+  --ion-text-color--button: #f9ce64;
+
+  --ion-text-over-background: #f9ce64;
+  --ion-text-over-home-overlay: #f9ce64;
+  --ion-toggle-background: #394547;
+  --ion-item-background: #2e3a3d;
+  --ion-card-background: #394547;
+  --ion-card-header-background: #2e3a3d;
+  --ion-toolbar-background: #233033;
+  --ion-tab-bar-color: #796f47;
+  --ion-tab-bar-color-selected: #f9ce64;
+  --ion-tab-bar-background: #233033;
+
+  /* font family */
+  --ion-font-family: 'Lato', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
+}
+
+/* iOS Dark Theme */
+.ios body[color-theme='dark'] {
+  --ion-background-color: #233033;
+  --ion-background-color-rgb: 35, 48, 51;
+
+  --ion-text-color: #ffffff;
+  --ion-text-color-rgb: 255, 255, 255;
+
+  --ion-border-color: #59583f;
+
+  --ion-color-step-50: #2e3835;
+  --ion-color-step-100: #384038;
+  --ion-color-step-150: #43483a;
+  --ion-color-step-200: #4e503d;
+  --ion-color-step-250: #59583f;
+  --ion-color-step-300: #635f42;
+  --ion-color-step-350: #6e6744;
+  --ion-color-step-400: #796f47;
+  --ion-color-step-450: #837749;
+  --ion-color-step-500: #8e7f4c;
+  --ion-color-step-550: #99874e;
+  --ion-color-step-600: #a38f50;
+  --ion-color-step-650: #ae9753;
+  --ion-color-step-700: #b99f55;
+  --ion-color-step-750: #c4a758;
+  --ion-color-step-800: #ceae5a;
+  --ion-color-step-850: #d9b65d;
+  --ion-color-step-900: #e4be5f;
+  --ion-color-step-950: #eec662;
+
+  --ion-text-over-background: #f9ce64;
+  --ion-item-background: #2e3a3d;
+  --ion-card-background: #394547;
+  --ion-toolbar-background: #233033;
+  --ion-tab-bar-color: #796f47;
+  --ion-tab-bar-color-selected: #f9ce64;
+  --ion-tab-bar-background: #233033;
+}
+
+.ios ion-modal {
+  --ion-toolbar-background: var(--ion-color-step-150);
+  --ion-toolbar-border-color: var(--ion-color-step-250);
+}
+
+/* Material Design Dark Theme */
+.md body[color-theme='dark'] {
+  --ion-background-color: #233033;
+  --ion-background-color-rgb: 35, 48, 51;
+
+  --ion-text-color: #ffffff;
+  --ion-text-color-rgb: 255, 255, 255;
+
+  --ion-border-color: #59583f;
+
+  --ion-color-step-50: #2e3835;
+  --ion-color-step-100: #384038;
+  --ion-color-step-150: #43483a;
+  --ion-color-step-200: #4e503d;
+  --ion-color-step-250: #59583f;
+  --ion-color-step-300: #635f42;
+  --ion-color-step-350: #6e6744;
+  --ion-color-step-400: #796f47;
+  --ion-color-step-450: #837749;
+  --ion-color-step-500: #8e7f4c;
+  --ion-color-step-550: #99874e;
+  --ion-color-step-600: #a38f50;
+  --ion-color-step-650: #ae9753;
+  --ion-color-step-700: #b99f55;
+  --ion-color-step-750: #c4a758;
+  --ion-color-step-800: #ceae5a;
+  --ion-color-step-850: #d9b65d;
+  --ion-color-step-900: #e4be5f;
+  --ion-color-step-950: #eec662;
+
+  --ion-text-over-background: #f9ce64;
+  --ion-item-background: #2e3a3d;
+  --ion-card-background: #394547;
+  --ion-toolbar-background: #233033;
+  --ion-tab-bar-color: #796f47;
+  --ion-tab-bar-color-selected: #f9ce64;
+  --ion-tab-bar-background: #233033;
+}
