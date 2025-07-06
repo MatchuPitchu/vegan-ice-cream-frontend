@@ -11,12 +11,14 @@ import {
 import { ellipse, square, triangle } from 'ionicons/icons'
 import { Redirect, Route } from 'react-router-dom'
 
+/* Theme variables */
+import '@/theme/styles.css'
+import '@/theme/variables.css'
+
 import Tab1 from './pages/Tab1'
 import Tab2 from './pages/Tab2'
 import Tab3 from './pages/Tab3'
 
-/* Theme variables */
-import './theme/variables.css'
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css'
 import '@ionic/react/css/display.css'
