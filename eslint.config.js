@@ -54,7 +54,10 @@ export default tseslint.config(
       sourceType: 'module',
       parser: tseslint.parser,
       parserOptions: {
-        projectService: true,
+        projectService: {
+          allowDefaultProject: ['eslint.config.js'],
+          defaultProject: 'tsconfig.json',
+        },
         tsconfigRootDir: import.meta.dirname,
       },
     },
@@ -77,8 +80,6 @@ export default tseslint.config(
       // base rule must be disabled as it can report incorrect errors
       // https://typescript-eslint.io/rules/no-unused-vars/#how-to-use
       'no-unused-vars': 'off',
-      '@typescript-eslint/no-redundant-type-constituents': 'warn',
-      '@typescript-eslint/no-unnecessary-type-constraint': 'warn',
       '@typescript-eslint/no-unused-vars': 'warn',
       '@typescript-eslint/no-empty-function': 'warn',
       '@typescript-eslint/no-namespace': 'off',
