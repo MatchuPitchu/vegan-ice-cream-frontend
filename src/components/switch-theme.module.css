@@ -1,0 +1,150 @@
+.switch {
+  position: relative;
+  border: none;
+  height: 28px;
+  width: 53px;
+  border-radius: var(--ion-border-radius);
+  border: 1px solid var(--ion-border-color);
+  background-image: linear-gradient(var(--ion-background-color), var(--ion-background-color));
+  cursor: pointer;
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+}
+
+.switch.night {
+  background-image: linear-gradient(var(--ion-background-color), var(--ion-background-color));
+}
+
+.switch > .moon {
+  height: 12px;
+  width: 12px;
+  border-radius: var(--ion-border-radius-circle);
+  background: var(--ion-color-tertiary);
+  position: absolute;
+  top: 7px;
+  left: 5px;
+  box-shadow: 0px 0px 7px 5px var(--ion-color-primary);
+  z-index: 10;
+  transition: all 0.3s ease;
+  animation: moveInSun 1s ease-out;
+}
+
+@keyframes moveInSun {
+  0% {
+    opacity: 0;
+    transform: translate(-3rem, 3rem);
+  }
+}
+
+.switch.night > .moon {
+  height: 20px;
+  width: 20px;
+  border-radius: var(--ion-border-radius-circle);
+  position: absolute;
+  top: 3px;
+  left: 2px;
+  box-shadow: 0 0 10px var(--ion-color-tertiary);
+  z-index: 10;
+  transition: all 0.3s ease;
+  animation: moveInMoon 1s ease-out;
+}
+
+@keyframes moveInMoon {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    top: 3rem;
+    left: 3rem;
+  }
+}
+
+.moon > .crater {
+  background: burlywood;
+  border-radius: var(--ion-border-radius-circle);
+  position: absolute;
+  opacity: 0;
+  box-shadow: 0 5px 5px rgb(0, 0, 0, 0.4) inset;
+}
+
+.night .crater {
+  opacity: 0.4;
+}
+
+.crater:first-child {
+  left: 1px;
+  top: 3px;
+  height: 5px;
+  width: 10px;
+  transform: rotate(-45deg);
+}
+
+.crater:last-child {
+  left: 13px;
+  top: 3px;
+  height: 5px;
+  width: 6px;
+  transform: rotate(45deg);
+}
+
+.night > .moon {
+  background: whitesmoke;
+  box-shadow: 0 0 5px whitesmoke;
+  transform: translate(25px, 0);
+}
+
+.shape {
+  position: absolute;
+  background: whitesmoke;
+  border-radius: var(--ion-border-radius-circle);
+}
+
+.shape.sm {
+  height: 3px;
+  width: 11px;
+  top: 35%;
+  left: 70%;
+  transition: all 0.3s ease;
+}
+
+.shape.md {
+  height: 5px;
+  width: 20px;
+  top: 15%;
+  left: 20%;
+  z-index: 2;
+}
+
+.shape.lg {
+  height: 8px;
+  width: 30px;
+  top: 55%;
+  left: 13%;
+}
+
+.night .shape {
+  background: lightgrey;
+  box-shadow: 0 0 10px 2px violet;
+}
+
+.night .shape.sm {
+  height: 3px;
+  width: 3px;
+  transform: translate(-18px, 3px);
+}
+
+.night .shape.sm:first-of-type {
+  transform: translate(-27px, -3px);
+}
+
+.night .shape.md {
+  height: 5px;
+  width: 5px;
+  transform: translate(10px, 0);
+}
+
+.night .shape.lg {
+  height: 8px;
+  width: 8px;
+  transform: translate(-2px, 0);
+}

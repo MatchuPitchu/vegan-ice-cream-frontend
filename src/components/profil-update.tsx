@@ -1,0 +1,237 @@
+import { IonButton, IonIcon, IonItem, IonLabel } from '@ionic/react'
+import { refreshCircleOutline } from 'ionicons/icons'
+import type { SubmitHandler } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
+
+import { useUpdateUserMutation } from '../store/api/user-api-slice'
+import { appActions } from '../store/app-slice'
+// Redux Store
+import { useAppDispatch, useAppSelector } from '../store/hooks'
+import { showActions } from '../store/show-slice'
+import { userActions } from '../store/user-slice'
+import type { GeoCoordinates } from '../types/types'
+import { GOOGLE_API_URL, GOOGLE_API_URL_CONFIG } from '../utils/variables-and-functions'
+import { CustomInput } from './form-fields/custom-input'
+
+interface ProfilUpdateForm {
+  name: string
+  email: string
+  city: string
+  newPassword: string
+  repeatPassword: string
+  password: string
+}
+
+const defaultFormValues: ProfilUpdateForm = {
+  name: '',
+  email: '',
+  city: '',
+  newPassword: '',
+  repeatPassword: '',
+  password: '',
+}
+
+const defaultHomeCity = {
+  city: '',
+  geo: {
+    lat: 52.524,
+    lng: 13.41,
+  },
+}
+
+export type UserUpdateData = {
+  password: string
+  name?: string
+  email?: string
+  home_city?: {
+    city: string
+    geo: GeoCoordinates
+  }
+  newPassword?: string
+  repeatPassword?: string
+}
+
+type ProfilUpdateProps = {
+  onCloseProfil: () => void
+  toggleUpdateProfil: () => void
+}
+
+export const ProfilUpdate = ({ toggleUpdateProfil, onCloseProfil }: ProfilUpdateProps) => {
+  const dispatch = useAppDispatch()
+  const { user } = useAppSelector((state) => state.user)
+  const { error } = useAppSelector((state) => state.app)
+
+  const { control, handleSubmit } = useForm({
+    defaultValues: defaultFormValues,
+  })
+
+  const [triggerUpdateUser, result] = useUpdateUserMutation()
+
+  const fetchCity = async (city: string): Promise<{ lat: number; lng: number } | undefined> => {
+    try {
+      const uri = encodeURI(city)
+      const response = await fetch(`${GOOGLE_API_URL}${uri}${GOOGLE_API_URL_CONFIG}`)
+      const { results } = await response.json()
+      return {
+        lat: results?.[0]?.geometry?.location?.lat,
+        lng: results?.[0]?.geometry?.location?.lng,
+      }
+    } catch (err) {
+      dispatch(appActions.setError('Da ist etwas schief gelaufen. Versuche es später nochmal.'))
+      setTimeout(() => dispatch(appActions.resetError()), 5000)
+    }
+  }
+
+  const onSubmit: SubmitHandler<ProfilUpdateForm> = async ({
+    name,
+    email,
+    city,
+    newPassword,
+    repeatPassword,
+    password,
+  }) => {
+    if (!password || !user) return
+    if (newPassword && newPassword !== repeatPassword) {
+      dispatch(appActions.setError('Neues Password stimmt nicht mit Wiederholung überein.'))
+      return setTimeout(() => dispatch(appActions.setError('')), 5000)
+    }
+
+    const body: UserUpdateData = {
+      password,
+    }
+
+    if (name && name !== user.name) body.name = name
+    if (email && email !== user.email) body.email = email
+    if (city === '') body.home_city = defaultHomeCity
+    if (city && city !== user.home_city.city) {
+      const geo = await fetchCity(city)
+      if (geo) {
+        body.home_city = {
+          city,
+          geo,
+        }
+      }
+    }
+    if (newPassword) body.newPassword = newPassword
+    if (repeatPassword) body.repeatPassword = repeatPassword
+
+    const requestAnswer = await triggerUpdateUser({ body, userId: user._id })
+
+    if (requestAnswer.hasOwnProperty('data')) {
+      dispatch(
+        userActions.updateUser({
+          name: body.name || user.name,
+          email: body.email || user.email,
+          home_city: body.home_city || user.home_city,
+        }),
+      )
+
+      const successMessage = `Update erfolgreich. ${
+        email &&
+        email !== user.email &&
+        'Da du deine E-Mail wechselst, bestätige das bitte mit einem Klick auf den Link in deinem Postfach. Schaue auch im Spam-Ordner.'
+      }`
+
+      dispatch(appActions.setSuccessMessage(successMessage))
+      setTimeout(() => dispatch(appActions.setSuccessMessage('')), 10000)
+
+      toggleUpdateProfil()
+
+      if (
+        (email.trim().length > 0 && email !== user.email) ||
+        (newPassword.trim().length > 0 && newPassword === repeatPassword)
+      ) {
+        onCloseProfil()
+        dispatch(userActions.logout())
+      }
+    } else {
+      dispatch(appActions.setError('Du hast ein falsches Passwort eingetragen'))
+      setTimeout(() => dispatch(appActions.resetError()), 5000)
+    }
+  }
+
+  return (
+    <div className="text-center">
+      <IonItem lines="none">
+        <IonLabel className="ion-text-wrap">
+          Aktualisiere die Felder deiner Wahl und bestätige mit deinem Passwort
+        </IonLabel>
+      </IonItem>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <IonItem lines="full">
+          <CustomInput control={control} name="name" label="Name" />
+        </IonItem>
+
+        <IonItem lines="full">
+          <CustomInput control={control} name="email" label="E-Mail" inputmode="email" />
+        </IonItem>
+
+        <IonItem lines="full">
+          <CustomInput
+            control={control}
+            name="city"
+            label={
+              <>
+                Stadt <span className="span-small">(für Startpunkt Karte)</span>
+              </>
+            }
+          />
+        </IonItem>
+
+        <IonItem lines="full">
+          <CustomInput
+            control={control}
+            name="newPassword"
+            label="Neues Passwort"
+            type="password"
+            rules={{
+              pattern: {
+                value: /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,32}$/,
+                message: 'Bitte überprüfe, ob die unteren Hinweise auf dein Passwort zutreffen',
+              },
+            }}
+          />
+        </IonItem>
+
+        <IonItem lines="full">
+          <CustomInput
+            control={control}
+            name="repeatPassword"
+            label="Passwort wiederholen"
+            type="password"
+            rules={{
+              pattern: {
+                value: /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,32}$/,
+                message: 'Bitte überprüfe, ob die unteren Hinweise auf dein Passwort zutreffen',
+              },
+            }}
+          />
+        </IonItem>
+
+        <IonItem lines="full">
+          <CustomInput
+            control={control}
+            name="password"
+            label="Eingabe mit aktuellem Passwort bestätigen"
+            type="password"
+            rules={{ required: 'Bitte bestätige die Eingabe mit deinem Passwort.' }}
+          />
+        </IonItem>
+
+        <IonButton
+          className="button--check button--check-large my-3 mx-5"
+          fill="clear"
+          type="submit"
+          routerLink="/login"
+          expand="block"
+        >
+          <IonIcon slot="end" className="pe-1" icon={refreshCircleOutline} />
+          Profil updaten
+        </IonButton>
+
+        {/* TODO: Brauch ich nicht mehr?! */}
+        {error && <div className="message--alert">{error}</div>}
+      </form>
+    </div>
+  )
+}

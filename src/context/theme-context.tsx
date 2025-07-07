@@ -1,17 +1,17 @@
-import { type ReactNode, createContext, useContext, useEffect, useState } from 'react'
+import { type PropsWithChildren, createContext, useContext, useEffect, useState } from 'react'
 
-import { mapDark, mapLight } from '../utils/map-styles'
+import { mapDark, mapLight } from '@/utils/map-styles'
 
 type Theme = 'dark' | 'light'
 type MapStyles = typeof mapDark | typeof mapLight
 
-interface ThemeContextInterface {
+type ThemeContext = {
   isDarkTheme: boolean
   handleTheme: () => void
   mapStyles: MapStyles
 }
 
-export const ThemeContext = createContext({} as ThemeContextInterface)
+export const ThemeContext = createContext({} as ThemeContext)
 
 export const useThemeContext = () => {
   const context = useContext(ThemeContext)
@@ -19,11 +19,7 @@ export const useThemeContext = () => {
   return context
 }
 
-type ThemeContextProviderProps = {
-  children: ReactNode
-}
-
-export const ThemeContextProvider = ({ children }: ThemeContextProviderProps) => {
+export const ThemeContextProvider = ({ children }: PropsWithChildren) => {
   const [colorTheme, setColorTheme] = useState<Theme>('dark')
   const [mapStyles, setMapStyles] = useState<MapStyles>(mapDark)
 

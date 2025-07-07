@@ -15,6 +15,7 @@ import { Redirect, Route } from 'react-router-dom'
 import '@/theme/styles.css'
 import '@/theme/variables.css'
 
+import { HeaderApp } from './components/header-app'
 import Tab1 from './pages/Tab1'
 import Tab2 from './pages/Tab2'
 import Tab3 from './pages/Tab3'
@@ -47,6 +48,8 @@ setupIonicReact()
 
 export const App = () => (
   <IonApp>
+    <HeaderApp />
+
     <IonTabs>
       <IonRouterOutlet>
         <Route exact path="/tab1">
